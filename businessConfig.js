@@ -14,8 +14,6 @@ export const START_USER_BALANCE = 50;
 export const START_BOT_BALANCE = GAME_MAX_PRIZE / 2;
 // export const START_BOT_BALANCE = START_USER_BALANCE;
 export const REQUIRED_PAID_TO_WITHDRAW = 1;
-export const MIN_AMOUNT_OF_WITHDRAWING = 1000;
-export const MAX_BALANCE_WITHOUT_PAID = MIN_AMOUNT_OF_WITHDRAWING * 0.75;
 export const GAMES_AMOUNT = 200;
 export const MAX_ATTEMPTS = 10;
 export const MIN_CHANCE_TO_WIN = 5;
@@ -27,6 +25,7 @@ export const LOW_LEVEL_GAME_PRIZE_TRESHOLD = 50;
 export const TABLES_AMOUNT = 20;
 export const TABLES_STEP = 1000;
 export const GAMES_IN_TABLE = 40;
+export const MIN_AMOUNT_OF_WITHDRAWING = 1;
 
 export default {
   REQUIRED_PAID_TO_WITHDRAW,
@@ -42,5 +41,4 @@ export default {
   COINS_RATE,
   GAME_MIN_PRIZE,
   GAME_MAX_PRIZE,
-  MAX_BALANCE_WITHOUT_PAID,
 };

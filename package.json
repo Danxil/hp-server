@@ -13,7 +13,9 @@
     "test-data": "node_modules/.bin/eslint ./**/*.js ./*.js && ./node_modules/babel-cli/bin/babel-node.js test-data.js",
     "test": "node_modules/.bin/eslint ./**/*.js ./*.js && node_modules/.bin/nodemon -w __tests__ -w ./ -e js,jsx --exec node_modules/.bin/jest",
     "migrate": "node -r dotenv/config node_modules/.bin/sequelize db:migrate",
-    "run-seeds": "node -r dotenv/config node_modules/.bin/sequelize db:seed:all"
+    "undo-migrate": "node -r dotenv/config node_modules/.bin/sequelize db:migrate:undo:all",
+    "seeds": "node -r dotenv/config node_modules/.bin/sequelize db:seed:all",
+    "undo-seeds": "node -r dotenv/config node_modules/.bin/sequelize db:seed:undo:all"
   },
   "author": "",
   "license": "ISC",

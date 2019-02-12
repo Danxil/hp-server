@@ -1,26 +1,35 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Tariffs', {
+    return queryInterface.createTable('Withdraws', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'inProgress',
+      },
+      amount: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      method: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      duration: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      minInvestment: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      percentage: {
-        type: Sequelize.FLOAT,
+      requisite: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
@@ -34,6 +43,6 @@ module.exports = {
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable('Tariffs');
+    return queryInterface.dropTable('Withdraws');
   },
 };

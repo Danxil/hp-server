@@ -10,6 +10,5 @@ module.exports = {
       });
     });
   },
-  down: () => {
-  },
+  down: () => Promise.resolve(),
 };

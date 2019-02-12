@@ -5,6 +5,7 @@ import logoutHandler from './handlers/logout';
 import createWithdrawHandler from './handlers/createWithdraw';
 import createPurchaseHandler from './handlers/createPurchase';
 import businessConfigHandler from './handlers/businessConfig';
+import getWithdrawsHandler from './handlers/getWithdraws';
 import tariffsHandler from './handlers/tariffs';
 
 const authorization = (req, res, next) => {
@@ -28,6 +29,7 @@ export default ({ app }) => {
   app.get(`${process.env.API_PREFIX}/logout`, authorization, logoutHandler());
   app.get(`${process.env.API_PREFIX}/free-kassa/info`, createPurchaseHandler());
   app.get(`${process.env.API_PREFIX}/free-kassa/success`, createPurchaseHandler());
+  app.get(`${process.env.API_PREFIX}/withdraws`, getWithdrawsHandler());
   app.post(`${process.env.API_PREFIX}/withdraws`, authorization, createWithdrawHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());

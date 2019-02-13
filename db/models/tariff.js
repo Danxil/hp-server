@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Tariff = sequelize.define('Tariffs', {
+  const Tariff = sequelize.define('Tariff', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,

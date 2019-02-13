@@ -28,6 +28,6 @@ module.exports = {
     ], {});
   },
   down: (queryInterface) => {
-    return queryInterface.bulkDelete('Users', { displayName: 'admin' });
+    return queryInterface.bulkDelete('Tariffs');
   },
 };

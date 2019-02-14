@@ -1,6 +1,7 @@
 module.exports = {
   up: (queryInterface) => {
     return queryInterface.bulkInsert('Users', [{
+      id: 1,
       password: 'admin666',
       isAdmin: true,
       balance: 100,
@@ -10,9 +11,7 @@ module.exports = {
       updatedAt: new Date(),
     }], {});
   },
-  down: (queryInterface) => {
-    return queryInterface.bulkDelete('Withdraws')
-    .then(() => queryInterface.bulkDelete('Investments'))
-    .then(() => queryInterface.bulkDelete('Users', { displayName: 'admin' }));
+  down: () => {
+    return Promise.resolve();
   },
 };

@@ -1,12 +1,12 @@
-const check = async () => {
-  try {
-    const a = 1;
-  } catch (e) {
-    console.log(e);
-  }
-  setTimeout(check, 500);
-};
+import schedule from 'node-schedule';
+import { handleInvestments } from '../controllers/investments';
 
-export default async () => {
-  await check();
+export default () => {
+  schedule.scheduleJob('0 * * * * *', () => {
+    try {
+      handleInvestments();
+    } catch (e) {
+      console.log(e);
+    }
+  });
 };

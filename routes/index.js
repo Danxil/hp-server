@@ -7,6 +7,7 @@ import createPurchaseHandler from './handlers/createPurchase';
 import businessConfigHandler from './handlers/businessConfig';
 import getWithdrawsHandler from './handlers/getWithdraws';
 import getInvestmentsHandler from './handlers/getInvestments';
+import getAdminStatistic from './handlers/getAdminStatistic';
 import createInvestmentHandler from './handlers/createInvestment';
 import tariffsHandler from './handlers/tariffs';
 
@@ -37,6 +38,7 @@ export default ({ app }) => {
   app.post(`${process.env.API_PREFIX}/investments`, authorization, createInvestmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
+  app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'client', 'index.html'));
   });

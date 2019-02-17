@@ -12,6 +12,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    maxInvestment: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     percentage: {
       type: DataTypes.FLOAT,
       allowNull: false,

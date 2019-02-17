@@ -19,6 +19,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      maxInvestment: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
       percentage: {
         type: Sequelize.FLOAT,
         allowNull: false,

@@ -7,7 +7,7 @@ export default () => async (req, res) => {
 
   const tariff = await getTariff({ id: tariffId });
 
-  if (!tariff || amount < tariff.minInvestment) return res.send(400);
+  if (!tariff || amount < tariff.minInvestment) return res.status(400).send('Low amount or tariff is not exist!');
   const investment = await createInvestment({
     amount,
     userId,

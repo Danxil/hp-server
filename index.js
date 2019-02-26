@@ -13,7 +13,7 @@ import './db/models';
 
 (async () => {
   const app = express();
-  if (process.env.NODE_ENV === 'production') app.use(expressSslify.HTTPS({ trustProtoHeader: true }));
+  // if (process.env.NODE_ENV === 'production') app.use(expressSslify.HTTPS({ trustProtoHeader: true }));
 
   app.use(cors({
     origin: process.env.CLIENT_BASE_URL.split(','),

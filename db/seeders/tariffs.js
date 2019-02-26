@@ -37,15 +37,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      {
-        id: 6,
-        name: 'TEST',
-        duration: 1,
-        minInvestment: 0.2,
-        percentage: 10,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
     ], {});
   },
   down: () => {

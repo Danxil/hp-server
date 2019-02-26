@@ -2,7 +2,6 @@ module.exports = {
   up: (queryInterface) => {
     return queryInterface.bulkInsert('Tariffs', [
       {
-        id: 1,
         name: 'BEGINNER',
         duration: 7,
         minInvestment: 10,
@@ -11,7 +10,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 2,
         name: 'BASE',
         duration: 5,
         minInvestment: 25,
@@ -20,7 +18,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 4,
         name: 'ADVANCED',
         duration: 3,
         minInvestment: 50,
@@ -29,7 +26,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 5,
         name: 'EXPERT',
         duration: 2,
         minInvestment: 100,
@@ -39,7 +35,7 @@ module.exports = {
       },
     ], {});
   },
-  down: () => {
-    return Promise.resolve();
+  down: (queryInterface) => {
+    return queryInterface.bulkDelete('Tariffs', null);
   },
 };

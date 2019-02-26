@@ -32,7 +32,7 @@ export default ({ app }) => {
   app.get(`${process.env.API_PREFIX}/withdraws`, getWithdrawsHandler());
   app.post(`${process.env.API_PREFIX}/withdraws`, authorization, createWithdrawHandler());
   app.get(`${process.env.API_PREFIX}/investments`, authorization, getInvestmentsHandler());
-  app.post(`${process.env.API_PREFIX}/payment-success`, authorization, createInvestmentHandler());
+  app.post(`${process.env.API_PREFIX}/payment-success`, createInvestmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
   app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());

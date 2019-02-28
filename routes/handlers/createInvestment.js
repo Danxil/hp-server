@@ -2,7 +2,7 @@ import { createInvestment } from '../../controllers/investments';
 import { getTariff } from '../../controllers/tariffs';
 
 export default () => async (req, res) => {
-  const { amount, tariffId, userId } = req.body;
+  const { amount, tariffId, userId, orderId } = req.body;
 
   const tariff = await getTariff({ id: tariffId });
 
@@ -11,6 +11,7 @@ export default () => async (req, res) => {
     amount,
     userId,
     tariffId,
+    orderId,
     daysLeft: tariff.duration,
   });
   return res.status(200).send({ ...investment.toJSON(), user: req.user, tariff });

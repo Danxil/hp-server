@@ -7,8 +7,14 @@ export const getAll = async ({ userId }) => {
   });
   return investments;
 };
-export const createInvestment = async ({ amount, userId, tariffId, daysLeft }) => {
-  const investment = await global.db.Investment.create({ amount, userId, tariffId, daysLeft });
+export const createInvestment = async ({ amount, userId, tariffId, daysLeft, orderId }) => {
+  const investment = await global.db.Investment.create({
+    amount,
+    userId,
+    tariffId,
+    daysLeft,
+    orderId,
+  });
   return investment;
 };
 export const handleInvestment = async (investment) => {

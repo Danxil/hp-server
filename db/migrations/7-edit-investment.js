@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('Investment', 'orderId', {
+    return queryInterface.addColumn('Investments', 'orderId', {
       type: Sequelize.STRING,
       allowNull: false,
       unique: true,

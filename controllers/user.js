@@ -6,3 +6,6 @@ export const signUp = async ({ email, password, nickname, invitedById }) => {
   }
   return global.db.User.create({ email, displayName: nickname, password, invitedById });
 };
+export const getReferrals = async ({ userId }) => {
+  return global.db.User.findAll({ where: { invitedById: userId } });
+};

@@ -9,6 +9,7 @@ import getInvestmentsHandler from './handlers/getInvestments';
 import getAdminStatistic from './handlers/getAdminStatistic';
 import createInvestmentHandler from './handlers/createInvestment';
 import tariffsHandler from './handlers/tariffs';
+import getReferralsHandler from './handlers/getReferrals';
 
 const authorization = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -32,10 +33,11 @@ export default ({ app }) => {
   app.get(`${process.env.API_PREFIX}/withdraws`, getWithdrawsHandler());
   app.post(`${process.env.API_PREFIX}/withdraws`, authorization, createWithdrawHandler());
   app.get(`${process.env.API_PREFIX}/investments`, authorization, getInvestmentsHandler());
+  app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());
+  app.get(`${process.env.API_PREFIX}/get-referrals`, authorization, getReferralsHandler());
   app.post(`${process.env.API_PREFIX}/payment-success`, createInvestmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
-  app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'client', 'index.html'));
   });

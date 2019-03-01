@@ -8,6 +8,10 @@ export const getAll = async ({ userId }) => {
   });
   return investments;
 };
+export const getTotalInvested = async ({ userId }) => {
+  const investments = await getAll({ userId });
+  return investments.reduce((prev, { amount }) => prev + amount, 0);
+};
 export const createInvestment = async ({
   amount,
   userId,

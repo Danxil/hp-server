@@ -2,14 +2,13 @@ import { createInvestment } from '../../controllers/investments';
 import { getTariff } from '../../controllers/tariffs';
 
 export default () => async (req, res) => {
-  console.log(req.body);
   const { amount, tariffId, userId, orderId } = req.body;
 
   const tariff = await getTariff({ id: tariffId });
 
   if (!tariff || parseFloat(amount) < tariff.minInvestment) return res.status(400).send('Low amount or tariff is not exist!');
   const investment = await createInvestment({
-    amount,
+    amount: parseFloat(amount),
     userId,
     tariffId,
     orderId,

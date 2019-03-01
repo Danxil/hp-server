@@ -32,8 +32,8 @@ export default (sequelize, DataTypes) => {
       plural: 'users',
     },
   });
-  User.associate = () => {
-    // associations can be defined here
+  User.associate = (models) => {
+    models.User.hasMany(models.User, { foreignKey: 'invitedById', as: 'invitedBy' });
   };
   User.prototype.verifyPassword = function (password) {
     return password === this.password;

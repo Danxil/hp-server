@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import { USER_REFERENCE_PERCENTAGE } from '../businessConfig';
 
 export const getAll = async ({ userId }) => {
   const investments = await global.db.Investment.findAll({
@@ -7,7 +8,13 @@ export const getAll = async ({ userId }) => {
   });
   return investments;
 };
-export const createInvestment = async ({ amount, userId, tariffId, daysLeft, orderId }) => {
+export const createInvestment = async ({
+  amount,
+  userId,
+  tariffId,
+  daysLeft,
+  orderId,
+}) => {
   const investment = await global.db.Investment.create({
     amount,
     userId,
@@ -15,6 +22,10 @@ export const createInvestment = async ({ amount, userId, tariffId, daysLeft, ord
     daysLeft,
     orderId,
   });
+  const user = await global.db.User.find({ where: { id: userId } });
+  if (user.invitedById) {
+    await user.update({ balance: user.balance + (amount * (USER_REFERENCE_PERCENTAGE / 100)) });
+  }
   return investment;
 };
 export const handleInvestment = async (investment) => {

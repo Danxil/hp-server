@@ -29,7 +29,7 @@ module.exports = {
         name: 'EXPERT',
         duration: 2,
         minInvestment: 100,
-        percentage: 7,
+        percentage: 8,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

@@ -10,11 +10,6 @@ export default (sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    orderId: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-    },
   }, {
     name: {
       singular: 'investment',

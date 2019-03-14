@@ -17,6 +17,14 @@ export default (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: null,
     },
+    minReliability: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    maxReliability: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     percentage: {
       type: DataTypes.FLOAT,
       allowNull: false,

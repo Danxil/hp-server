@@ -4,18 +4,25 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    duration: {
+    minDuration: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    minInvestment: {
+    maxDuration: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    maxInvestment: {
+    minReplenishment: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: null,
+      allowNull: false,
+    },
+    minCredit: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    maxCredit: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     minReliability: {
       type: DataTypes.INTEGER,

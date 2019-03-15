@@ -7,7 +7,7 @@ import businessConfigHandler from './handlers/businessConfig';
 import getWithdrawsHandler from './handlers/getWithdraws';
 import getInvestmentsHandler from './handlers/getInvestments';
 import getAdminStatistic from './handlers/getAdminStatistic';
-import createInvestmentHandler from './handlers/createInvestment';
+import createReplenishmentHandler from './handlers/createReplenishment';
 import tariffsHandler from './handlers/tariffs';
 import getReferralsHandler from './handlers/getReferrals';
 
@@ -35,7 +35,7 @@ export default ({ app }) => {
   app.get(`${process.env.API_PREFIX}/investments`, authorization, getInvestmentsHandler());
   app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());
   app.get(`${process.env.API_PREFIX}/get-referrals`, authorization, getReferralsHandler());
-  app.post(`${process.env.API_PREFIX}/payment-success`, createInvestmentHandler());
+  app.post(`${process.env.API_PREFIX}/payment-success`, createReplenishmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
   app.get('/*', (req, res) => {

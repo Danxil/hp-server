@@ -3,10 +3,12 @@ module.exports = {
     return queryInterface.bulkInsert('Tariffs', [
       {
         name: 'TEST',
-        duration: 1,
+        maxDuration: 1,
+        minDuration: 5,
         minReliability: 50,
         maxReliability: 99,
-        minInvestment: 1,
+        minReplenishment: 1,
+        maxCredit: 25,
         percentage: 10,
         createdAt: new Date(),
         updatedAt: new Date(),

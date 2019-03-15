@@ -12,25 +12,23 @@ export const getTotalInvested = async ({ userId }) => {
   const investments = await getAll({ userId });
   return investments.reduce((prev, { amount }) => prev + amount, 0);
 };
-export const createInvestment = async ({
+export const createReplenishment = async ({
   amount,
   userId,
   tariffId,
-  daysLeft,
   orderId,
 }) => {
-  const investment = await global.db.Investment.create({
+  const replenishment = await global.db.Replenishment.create({
     amount,
     userId,
     tariffId,
-    daysLeft,
     orderId,
   });
   const user = await global.db.User.find({ where: { id: userId } });
   if (user.invitedById) {
     await user.update({ balance: user.balance + (amount * (USER_REFERENCE_PERCENTAGE / 100)) });
   }
-  return investment;
+  return replenishment;
 };
 export const handleInvestment = async (investment) => {
   let newBalance = investment.user.balance + (

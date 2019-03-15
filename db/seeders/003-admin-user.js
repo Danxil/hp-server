@@ -26,7 +26,7 @@ module.exports = {
     }
   },
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete('Users', { createdAt: { [Op.eq]: new Date(null) } });
     await queryInterface.bulkDelete('UserBalances', { createdAt: { [Op.eq]: new Date(null) } });
+    await queryInterface.bulkDelete('Users', { createdAt: { [Op.eq]: new Date(null) } });
   },
 };

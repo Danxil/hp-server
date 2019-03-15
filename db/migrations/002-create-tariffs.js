@@ -11,17 +11,33 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      duration: {
+      minDuration: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      minInvestment: {
+      maxDuration: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      maxInvestment: {
+      minReplenishment: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      minCredit: {
         type: Sequelize.INTEGER,
         allowNull: true,
+      },
+      maxCredit: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      minReliability: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      maxReliability: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       percentage: {
         type: Sequelize.FLOAT,

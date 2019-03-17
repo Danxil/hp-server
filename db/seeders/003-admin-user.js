@@ -9,7 +9,7 @@ module.exports = {
         password: 'admin666',
         isAdmin: true,
         balance: 100,
-        displayName: 'admin',
+        accountType: 'investor',
         email: 'admin@admin.admin',
         createdAt: new Date(null),
         updatedAt: new Date(null),

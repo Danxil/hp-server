@@ -11,6 +11,10 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: null,
       },
+      accountType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       balance: {
         type: Sequelize.FLOAT,
         defaultValue: 0,
@@ -21,10 +25,6 @@ module.exports = {
         defaultValue: 0,
         allowNull: false,
       },
-      displayName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -33,6 +33,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
+      },
+      verified: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
       },
       invitedById: {
         type: Sequelize.INTEGER,

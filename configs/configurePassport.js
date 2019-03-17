@@ -3,7 +3,10 @@ import LocalStrategy from 'passport-local';
 
 const localStrategyVerify = () => async (username, password, done) => {
   try {
-    const user = await global.db.User.findOne({ where: { email: username } });
+    const user = await global.db.User.findOne({
+      where: { email: username },
+      include: [global.db.UserBalance],
+    });
     if (!user) {
       console.log('Authentication failed. User not found');
       return done(null, false);
@@ -39,7 +42,10 @@ export default ({ app }) => {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await global.db.User.findOne({ where: { id } });
+      const user = await global.db.User.findOne({
+        where: { id },
+        include: [global.db.UserBalance],
+      });
       done(null, user);
     } catch (err) {
       done(err);

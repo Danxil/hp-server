@@ -1,4 +1,4 @@
-export const getTariffs = async ({ withTests }) => {
+export const getTariffs = async ({ withTests } = {}) => {
   const tariffs = global.db.Tariff.findAll();
   let result = tariffs;
 

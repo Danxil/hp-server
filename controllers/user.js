@@ -1,6 +1,6 @@
-import getTariffs from './tariffs';
+import { getTariffs } from './tariffs';
 
-export const signUp = async ({ email, password, nickname, invitedById }) => {
+export const signUp = async ({ email, password, invitedById, accountType }) => {
   const user = await global.db.User.findOne({ where: { email } });
 
   if (user) {
@@ -8,17 +8,20 @@ export const signUp = async ({ email, password, nickname, invitedById }) => {
   }
   const newUser = await global.db.User.create({
     email,
-    displayName: nickname,
     password,
     invitedById,
+    accountType,
   });
   const tariffs = await getTariffs();
   const userBalances = tariffs.map(i => ({
     userId: newUser.id,
     tariffId: i.id,
   }));
-  await global.db.UserBalances.bulkInsert(userBalances);
-  return newUser;
+  const userBalancesResult = await global.db.UserBalance.bulkCreate(
+    userBalances,
+    { returning: true },
+  );
+  return { ...newUser, userBalances: userBalancesResult };
 };
 export const getReferrals = async ({ userId }) => {
   return global.db.User.findAll({ where: { invitedById: userId } });

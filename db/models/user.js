@@ -14,17 +14,21 @@ export default (sequelize, DataTypes) => {
       defaultValue: 0,
       allowNull: false,
     },
-    displayName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     email: {
       type: DataTypes.STRING,
+    },
+    accountType: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
       allowNull: false,
+    },
+    verified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
   }, {
     name: {

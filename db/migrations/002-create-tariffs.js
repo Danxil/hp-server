@@ -43,6 +43,11 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
+      insurance: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

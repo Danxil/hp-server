@@ -36,6 +36,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    insurance: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
   }, {
     name: {
       singular: 'tariff',

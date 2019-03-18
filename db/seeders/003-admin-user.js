@@ -18,6 +18,7 @@ module.exports = {
       await queryInterface.bulkInsert('UserBalances', tariffsRes[0].map(i => ({
         userId: userRes[0].id,
         tariffId: i.id,
+        amount: 30,
         createdAt: new Date(null),
         updatedAt: new Date(null),
       })));

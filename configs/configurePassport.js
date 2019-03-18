@@ -17,7 +17,7 @@ const localStrategyVerify = () => async (username, password, done) => {
     }
     return done(null, user);
   } catch (error) {
-    console.log('Authentication failed. Some error');
+    console.log('Authentication failed. Some error', error);
     return done(error);
   }
 };
@@ -48,6 +48,7 @@ export default ({ app }) => {
       });
       done(null, user);
     } catch (err) {
+      console.log(err);
       done(err);
     }
   });

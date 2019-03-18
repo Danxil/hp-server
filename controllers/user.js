@@ -21,7 +21,7 @@ export const signUp = async ({ email, password, invitedById, accountType }) => {
     userBalances,
     { returning: true },
   );
-  return { ...newUser, userBalances: userBalancesResult };
+  return { ...newUser.toJSON(), userBalances: userBalancesResult };
 };
 export const getReferrals = async ({ userId }) => {
   return global.db.User.findAll({ where: { invitedById: userId } });

@@ -11,6 +11,8 @@ import getAdminStatistic from './handlers/getAdminStatistic';
 import createReplenishmentHandler from './handlers/createReplenishment';
 import tariffsHandler from './handlers/tariffs';
 import getReferralsHandler from './handlers/getReferrals';
+import unverifyUserHandler from './handlers/unverifyUser';
+import getNotVerifiedUsersHandler from './handlers/getNotVerifiedUsers';
 
 const authorization = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -40,6 +42,8 @@ export default ({ app }) => {
   app.post(`${process.env.API_PREFIX}/payment-success`, createReplenishmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
+  app.put(`${process.env.API_PREFIX}/users/:userId/unverify`, authorization, isAdmin, unverifyUserHandler());
+  app.get(`${process.env.API_PREFIX}/users`, authorization, isAdmin, getNotVerifiedUsersHandler());
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'client', 'index.html'));
   });

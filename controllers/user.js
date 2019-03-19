@@ -26,3 +26,17 @@ export const signUp = async ({ email, password, invitedById, accountType }) => {
 export const getReferrals = async ({ userId }) => {
   return global.db.User.findAll({ where: { invitedById: userId } });
 };
+export const unverifyUser = async ({ userId }) => {
+  await global.db.User.update({ verified: false }, { where: { id: userId } });
+};
+export const getNotVerifiedUsers = async () => {
+  return global.db.User.findAll({
+    where: {
+      verified: null,
+    },
+    order: [
+      ['createdAt', 'DESC'],
+      ['accountType', 'DESC'],
+    ],
+  });
+};

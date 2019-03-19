@@ -8,6 +8,7 @@ module.exports = {
         minReliability: 50,
         maxReliability: 99,
         minReplenishment: 1,
+        minCredit: 15,
         maxCredit: 25,
         percentage: 10,
         createdAt: new Date(),

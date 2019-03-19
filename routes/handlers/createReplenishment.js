@@ -1,4 +1,4 @@
-import { createReplenishment } from '../../controllers/investments';
+import { createReplenishment } from '../../controllers/replenishment';
 import { getTariff } from '../../controllers/tariffs';
 
 export default () => async (req, res) => {

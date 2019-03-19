@@ -27,6 +27,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      reliability: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      duration: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       amount: {
         type: Sequelize.FLOAT,
         allowNull: false,

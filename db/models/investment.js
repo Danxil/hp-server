@@ -10,6 +10,14 @@ export default (sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    reliability: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    duration: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
   }, {
     name: {
       singular: 'investment',

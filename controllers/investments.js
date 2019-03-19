@@ -1,5 +1,4 @@
 import { Op } from 'sequelize';
-import { USER_REFERENCE_PERCENTAGE } from '../businessConfig';
 
 export const getAll = async ({ userId }) => {
   const investments = await global.db.Investment.findAll({
@@ -8,27 +7,31 @@ export const getAll = async ({ userId }) => {
   });
   return investments;
 };
+export const createInvestment = async ({
+  amount,
+  tariffId,
+  duration,
+  reliability,
+  user,
+}) => {
+  const userBalance = user.userBalances.find(o => o.tariffId === tariffId);
+  if (userBalance.amount < amount) {
+    throw new Error('Low balance');
+  }
+  const investment = await global.db.Investment.create({
+    amount,
+    userId: user.id,
+    tariffId,
+    reliability,
+    daysLeft: duration,
+    duration,
+  });
+  await userBalance.update({ amount: userBalance.amount - amount });
+  return investment;
+};
 export const getTotalInvested = async ({ userId }) => {
   const investments = await getAll({ userId });
   return investments.reduce((prev, { amount }) => prev + amount, 0);
-};
-export const createReplenishment = async ({
-  amount,
-  userId,
-  tariffId,
-  orderId,
-}) => {
-  const replenishment = await global.db.Replenishment.create({
-    amount,
-    userId,
-    tariffId,
-    orderId,
-  });
-  const user = await global.db.User.find({ where: { id: userId } });
-  if (user.invitedById) {
-    await user.update({ balance: user.balance + (amount * (USER_REFERENCE_PERCENTAGE / 100)) });
-  }
-  return replenishment;
 };
 export const handleInvestment = async (investment) => {
   let newBalance = investment.user.balance + (

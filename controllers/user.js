@@ -1,6 +1,6 @@
 import { getTariffs } from './tariffs';
 
-export const signUp = async ({ email, password, invitedById, accountType }) => {
+export const signUp = async ({ email, password, invitedById, displayName, accountType }) => {
   const user = await global.db.User.findOne({ where: { email } });
 
   if (user) {
@@ -11,6 +11,7 @@ export const signUp = async ({ email, password, invitedById, accountType }) => {
     password,
     invitedById,
     accountType,
+    displayName,
   });
   const tariffs = await getTariffs();
   const userBalances = tariffs.map(i => ({

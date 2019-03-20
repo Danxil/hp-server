@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 export default (sequelize) => {
-  const Replenish = sequelize.define('Replenish', {
+  const Replenishment = sequelize.define('Replenishment', {
     amount: {
       type: Sequelize.FLOAT,
       allowNull: false,
@@ -18,10 +18,10 @@ export default (sequelize) => {
     },
   });
 
-  Replenish.associate = (models) => {
-    models.Replenish.belongsTo(models.User, { foreignKey: 'userId' });
-    models.Replenish.belongsTo(models.Tariff, { foreignKey: 'tariffId' });
+  Replenishment.associate = (models) => {
+    models.Replenishment.belongsTo(models.User, { foreignKey: 'userId' });
+    models.Replenishment.belongsTo(models.Tariff, { foreignKey: 'tariffId' });
   };
 
-  return Replenish;
+  return Replenishment;
 };

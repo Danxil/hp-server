@@ -6,7 +6,8 @@ export default () => async (req, res) => {
 
   const tariff = await getTariff({ id: tariffId });
 
-  if (!tariff || parseFloat(amount) < tariff.minReplenishment) return res.status(400).send('Low amount or tariff is not exist!');
+  if (!tariff) return res.status(400).send('Tariff is not exist!');
+  if (amount < tariff.minReplenishment) return res.status(400).send('Low amount of replenishment!');
   const investment = await createReplenishment({
     amount: parseFloat(amount),
     userId,

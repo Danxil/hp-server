@@ -3,6 +3,7 @@ import signUpHandler from './handlers/signUp';
 import userHandler from './handlers/user';
 import logoutHandler from './handlers/logout';
 import createWithdrawHandler from './handlers/createWithdraw';
+import completeWithdrawHandler from './handlers/completeWithdraw';
 import businessConfigHandler from './handlers/businessConfig';
 import getWithdrawsHandler from './handlers/getWithdraws';
 import getInvestmentsHandler from './handlers/getInvestments';
@@ -35,6 +36,7 @@ export default ({ app }) => {
   app.get(`${process.env.API_PREFIX}/logout`, authorization, logoutHandler());
   app.get(`${process.env.API_PREFIX}/withdraws`, getWithdrawsHandler());
   app.post(`${process.env.API_PREFIX}/withdraws`, authorization, createWithdrawHandler());
+  app.put(`${process.env.API_PREFIX}/withdraws/:withdrawId/complete`, authorization, isAdmin, completeWithdrawHandler());
   app.get(`${process.env.API_PREFIX}/investments`, authorization, getInvestmentsHandler());
   app.post(`${process.env.API_PREFIX}/investments`, authorization, createInvestmentHandler());
   app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());

@@ -17,6 +17,7 @@ export const createReplenishment = async ({
     include: [
       {
         model: global.db.UserBalance,
+        include: [global.db.Tariff],
         where: { tariffId },
       },
     ],

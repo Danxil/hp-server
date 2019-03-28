@@ -14,6 +14,7 @@ import tariffsHandler from './handlers/tariffs';
 import getReferralsHandler from './handlers/getReferrals';
 import unverifyUserHandler from './handlers/unverifyUser';
 import getNotVerifiedUsersHandler from './handlers/getNotVerifiedUsers';
+import createSupportTicketHandler from './handlers/createSupportTicket';
 
 const authorization = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -44,6 +45,7 @@ export default ({ app }) => {
   app.post(`${process.env.API_PREFIX}/payment-success`, createReplenishmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
+  app.post(`${process.env.API_PREFIX}/support`, createSupportTicketHandler());
   app.put(`${process.env.API_PREFIX}/users/:userId/unverify`, authorization, isAdmin, unverifyUserHandler());
   app.get(`${process.env.API_PREFIX}/users`, authorization, isAdmin, getNotVerifiedUsersHandler());
   app.get('/*', (req, res) => {

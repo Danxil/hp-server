@@ -4,7 +4,7 @@ export const createReplenishment = async ({
   amount,
   userId,
   tariffId,
-  orderId,
+  orderId = `reinvestProfit_${new Date().getTime()}`,
 }) => {
   const replenishment = await global.db.Replenishment.create({
     amount,
@@ -23,7 +23,7 @@ export const createReplenishment = async ({
     ],
   });
   await user.userBalances[0].update({ amount: user.userBalances[0].amount + amount });
-  if (user.invitedById) {
+  if (user.invitedById && orderId.indexOf('reinvestProfit') === -1) {
     await global.db.User.update({
       balance: user.balance + (amount * (USER_REFERENCE_PERCENTAGE / 100)),
     }, {

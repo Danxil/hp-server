@@ -5,7 +5,11 @@ const localStrategyVerify = () => async (username, password, done) => {
   try {
     const user = await global.db.User.findOne({
       where: { email: username },
-      include: [{ model: global.db.UserBalance, include: [global.db.Tariff] }],
+      include: [{
+        model: global.db.UserBalance,
+        include: [global.db.Tariff],
+
+      }],
     });
     if (!user) {
       console.log('Authentication failed. User not found');
@@ -44,7 +48,10 @@ export default ({ app }) => {
     try {
       const user = await global.db.User.findOne({
         where: { id },
-        include: [{ model: global.db.UserBalance, include: [global.db.Tariff] }],
+        include: [{
+          model: global.db.UserBalance,
+          include: [global.db.Tariff],
+        }],
       });
       done(null, user);
     } catch (err) {

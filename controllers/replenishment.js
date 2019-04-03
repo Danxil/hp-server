@@ -20,16 +20,13 @@ export const createReplenishment = async ({
         include: [global.db.Tariff],
         where: { tariffId },
       },
-      {
-        model: global.db.User,
-        as: 'invitedBy',
-      },
     ],
   });
   await user.userBalances[0].update({ amount: user.userBalances[0].amount + amount });
   if (user.invitedById && orderId.indexOf('reinvestProfit') === -1) {
-    await user.invitedBy.update({
-      balance: user.invitedBy.balance + (amount * (USER_REFERENCE_PERCENTAGE / 100)),
+    const invitedBy = await global.db.User.find({ where: { id: user.invitedById } });
+    await invitedBy.update({
+      balance: invitedBy.balance + (amount * (USER_REFERENCE_PERCENTAGE / 100)),
     });
   }
   return replenishment;

@@ -16,7 +16,7 @@ import './db/models';
   if (process.env.NODE_ENV === 'production') app.use(expressSslify.HTTPS({ trustProtoHeader: true }));
 
   app.use(cors({
-    origin: process.env.CLIENT_BASE_URL.split(','),
+    origin: process.env.CLIENT_BASE_URL,
     credentials: true,
   }));
   app.use(cookieParser());

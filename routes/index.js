@@ -1,4 +1,5 @@
 import path from 'path';
+import cors from 'cors';
 import signUpHandler from './handlers/signUp';
 import userHandler from './handlers/user';
 import logoutHandler from './handlers/logout';
@@ -43,7 +44,7 @@ export default ({ app }) => {
   app.post(`${process.env.API_PREFIX}/investments`, authorization, createInvestmentHandler());
   app.get(`${process.env.API_PREFIX}/admin-statistic`, authorization, isAdmin, getAdminStatistic());
   app.get(`${process.env.API_PREFIX}/get-referrals`, authorization, getReferralsHandler());
-  app.post(`${process.env.API_PREFIX}/payment-success`, createReplenishmentHandler());
+  app.post(`${process.env.API_PREFIX}/payment-success`, cors({ origin: process.env.BILLING_DOMAIN }), createReplenishmentHandler());
   app.get(`${process.env.API_PREFIX}/business-config`, businessConfigHandler());
   app.get(`${process.env.API_PREFIX}/tariffs`, tariffsHandler());
   app.post(`${process.env.API_PREFIX}/support`, createSupportTicketHandler());

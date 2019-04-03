@@ -32,6 +32,6 @@ export const createReplenishment = async ({
   return replenishment;
 };
 export const getTotalReplenished = async ({ userId }) => {
-  const replenishments = await global.db.Replenishment.findAll({ userId });
+  const replenishments = await global.db.Replenishment.findAll({ where: { userId } });
   return replenishments.reduce((prev, { amount }) => prev + amount, 0);
 };

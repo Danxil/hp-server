@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import moment from 'moment';
 
 export const getAll = async ({ userId }) => {
   const investments = await global.db.Investment.findAll({
@@ -34,6 +35,8 @@ export const getTotalInvested = async ({ userId }) => {
   return investments.reduce((prev, { amount }) => prev + amount, 0);
 };
 export const handleInvestment = async (investment) => {
+  if (moment(investment.createdAt).hour() !== moment().hour()) return;
+
   let newBalance = investment.user.balance + (
     (investment.tariff.percentage / 100) * investment.amount
   );

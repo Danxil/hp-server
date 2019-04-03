@@ -3,7 +3,6 @@ import expressSslify from 'express-sslify';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import path from 'path';
 import routes from './routes';
 import configurePassport from './configs/configurePassport';
@@ -15,10 +14,6 @@ import './db/models';
   const app = express();
   if (process.env.NODE_ENV === 'production') app.use(expressSslify.HTTPS({ trustProtoHeader: true }));
 
-  app.use(cors({
-    origin: process.env.CLIENT_BASE_URL,
-    credentials: true,
-  }));
   app.use(cookieParser());
   app.use(bodyParser.json({ extended: true }));
   await configureSessions({ app });

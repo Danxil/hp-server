@@ -33,6 +33,10 @@ const isAdmin = (req, res, next) => {
 };
 
 export default ({ app }) => {
+  app.use(cors({
+    origin: process.env.CLIENT_BASE_URL,
+    credentials: true,
+  }));
   app.post(`${process.env.API_PREFIX}/sign-up`, signUpHandler());
   app.get(`${process.env.API_PREFIX}/user`, authorization, userHandler());
   // app.get(`${process.env.API_PREFIX}/users`, authorization, userHandler());

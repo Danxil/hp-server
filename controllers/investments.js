@@ -56,12 +56,8 @@ export const handleInvestments = async () => {
     },
     include: [global.db.User, global.db.Tariff],
   });
-  let i = 0;
-  let process = true;
-  while (process) {
-    await handleInvestment(investments[i]);
-    i += 1;
-    if (!investments[i]) process = false;
-    continue;
-  }
+  investments.reduce(async (previousPromise, investment) => {
+    await previousPromise;
+    return handleInvestment(investment);
+  }, Promise.resolve());
 };

@@ -36,7 +36,6 @@ export const getTotalInvested = async ({ userId }) => {
 };
 export const handleInvestment = async (investment) => {
   if (moment(investment.createdAt).hour() !== moment().hour()) return;
-
   let newBalance = investment.user.balance + (
     (investment.tariff.percentage / 100) * investment.amount
   );
@@ -57,5 +56,12 @@ export const handleInvestments = async () => {
     },
     include: [global.db.User, global.db.Tariff],
   });
-  return Promise.all(investments.map(handleInvestment));
+  let i = 0;
+  let process = true;
+  while (process) {
+    await handleInvestment(investments[i]);
+    i += 1;
+    if (!investments[i]) process = false;
+    continue;
+  }
 };

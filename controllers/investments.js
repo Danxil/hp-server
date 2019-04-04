@@ -35,14 +35,15 @@ export const getTotalInvested = async ({ userId }) => {
   return investments.reduce((prev, { amount }) => prev + amount, 0);
 };
 export const handleInvestment = async (investment) => {
+  const user = await global.db.User.find({ where: { id: investment.userId } });
   if (moment(investment.createdAt).hour() !== moment().hour()) return;
-  let newBalance = investment.user.balance + (
+  let newBalance = user.balance + (
     (investment.tariff.percentage / 100) * investment.amount
   );
 
   if (investment.daysLeft === 1) newBalance += investment.amount;
 
-  await investment.user.update({
+  await user.update({
     balance: newBalance,
   });
   await investment.update({ daysLeft: investment.daysLeft - 1 });

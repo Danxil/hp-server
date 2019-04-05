@@ -42,6 +42,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: true,
       },
+      isBot: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       invitedById: {
         type: Sequelize.INTEGER,
         allowNull: true,

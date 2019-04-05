@@ -31,6 +31,11 @@ export default (sequelize, DataTypes) => {
       defaultValue: false,
       allowNull: false,
     },
+    isBot: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
     verified: {
       type: DataTypes.BOOLEAN,
       allowNull: true,

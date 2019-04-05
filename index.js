@@ -9,6 +9,8 @@ import configurePassport from './configs/configurePassport';
 import configureSessions from './configs/configureSessions';
 import configureSchedules from './configs/configureSchedules';
 import './db/models';
+import WS from './services/ws';
+import initData from './socketEvents/handlers/initData';
 
 (async () => {
   const app = express();
@@ -16,17 +18,22 @@ import './db/models';
 
   app.use(cookieParser());
   app.use(bodyParser.json({ extended: true }));
-  await configureSessions({ app });
+  const sessionParser = await configureSessions({ app });
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.static(path.join(__dirname, 'client'), { index: false, extensions: false, redirect: false }));
   configurePassport({ db: global.db, app });
 
-  app.listen(process.env.PORT, () => console.log('REST started'));
+  const server = app.listen(process.env.PORT, () => console.log('REST started'));
 
   await configureSchedules();
 
   routes({ app });
+
+  new WS({ server, sessionParser }).on(
+    'connection',
+    ({ user, ws: wsService }) => initData({ user, ws: wsService }),
+  );
 
   process.on('SIGTERM', () => {
     console.log('SIGTERM');

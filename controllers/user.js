@@ -30,11 +30,12 @@ export const getReferrals = async ({ userId }) => {
 export const unverifyUser = async ({ userId }) => {
   await global.db.User.update({ verified: false }, { where: { id: userId } });
 };
-export const getNotVerifiedUsers = async () => {
+export const getUsersForAdminStatistic = async () => {
   return global.db.User.findAll({
-    where: {
-      verified: null,
-    },
+    include: [
+      { model: global.db.Withdraw, include: [global.db.User] },
+      global.db.Replenishment,
+    ],
     order: [
       ['createdAt', 'DESC'],
       ['accountType', 'DESC'],

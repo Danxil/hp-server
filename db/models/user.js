@@ -44,6 +44,8 @@ export default (sequelize, DataTypes) => {
   User.associate = (models) => {
     models.User.hasMany(models.User, { foreignKey: 'invitedById', as: 'invitedBy' });
     models.User.hasMany(models.UserBalance, { foreignKey: 'userId' });
+    models.User.hasMany(models.Withdraw, { foreignKey: 'userId' });
+    models.User.hasMany(models.Replenishment, { foreignKey: 'userId' });
   };
   User.prototype.verifyPassword = function (password) {
     return password === this.password;

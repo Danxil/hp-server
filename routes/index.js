@@ -14,7 +14,7 @@ import createReplenishmentHandler from './handlers/createReplenishment';
 import tariffsHandler from './handlers/tariffs';
 import getReferralsHandler from './handlers/getReferrals';
 import unverifyUserHandler from './handlers/unverifyUser';
-import getNotVerifiedUsersHandler from './handlers/getNotVerifiedUsers';
+import getUsersForAdminStatisticHandler from './handlers/getUsersForAdminStatistic';
 import createSupportTicketHandler from './handlers/createSupportTicket';
 import reinvestProfitHandler from './handlers/reinvestProfit';
 
@@ -50,7 +50,7 @@ export default ({ app }) => {
   app.post(`${process.env.API_PREFIX}/support`, createSupportTicketHandler());
   app.post(`${process.env.API_PREFIX}/reinvest-profit`, reinvestProfitHandler());
   app.put(`${process.env.API_PREFIX}/users/:userId/unverify`, authorization, isAdmin, unverifyUserHandler());
-  app.get(`${process.env.API_PREFIX}/users`, authorization, isAdmin, getNotVerifiedUsersHandler());
+  app.get(`${process.env.API_PREFIX}/admin-statistic/users`, authorization, isAdmin, getUsersForAdminStatisticHandler());
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'client', 'index.html'));
   });
